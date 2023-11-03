@@ -1,7 +1,7 @@
 
 # Reservation System
 
-A simple, fun and short code of a Reservation System in python.
+A simple, fun and short code representing a Reservation System in written with python language.
 
 # requirements
 
