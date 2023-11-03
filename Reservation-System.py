@@ -1,5 +1,4 @@
 # This is Ash.
-# proving masterclass is possible with minimal syntax
 
 ascii_art = """
  █████╗ ███████╗██╗  ██╗    ██╗  ██╗ ██████╗ ████████╗███████╗██╗
@@ -7,7 +6,7 @@ ascii_art = """
 ███████║███████╗███████║    ███████║██║   ██║   ██║   █████╗  ██║
 ██╔══██║╚════██║██╔══██║    ██╔══██║██║   ██║   ██║   ██╔══╝  ██║
 ██║  ██║███████║██║  ██║    ██║  ██║╚██████╔╝   ██║   ███████╗███████╗
-╚═╝  ╚═╝╚══════╝╚═╝  ╚╝    ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝
+╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚══════╝╚══════╝
 """
 
 class Room:
@@ -34,7 +33,9 @@ reservations = []
 next_reservation_id = 1
 
 def make_reservation(guest_name, room_type, num_days, is_vip):
-    if room_type in room_database and room_database[room_type].available:
+    if is_VIP == False:
+        print("This is the way out!\n")
+    elif room_type in room_database and room_database[room_type].available:
         # Calculate the price
         price = num_days * (55 if is_vip else room_database[room_type].price)
 
@@ -64,11 +65,20 @@ def display_room_availability():
         else:
             print("❗Status: Occupied")
 
+is_VIP = True
 def VIP():
-    print("\nThanks for using our reservation service.\n")
+    global is_VIP
+    password = input("\nPlease Give us your VIP password:")
+    if password.lower() == "ash":
+        print("Thanks for using our reservation service.")
+        is_VIP = True
+    else:
+        print("You lied to us. We can not book you any room.")
+        is_VIP = False
 
 def main():
     while True:
+        is_VIP = True
         print("\n\nPlease choose an option: ")
         print("1️⃣ Make a reservation")
         print("2️⃣ Display room availability")
@@ -82,7 +92,10 @@ def main():
             is_vip = input("Are you a VIP user (yes/no): ").lower()
             if is_vip == "yes" or is_vip == "y":
                 VIP()
-            make_reservation(guest_name, room_type, num_days, is_vip)
+                if is_VIP == False:
+                    break
+            if is_VIP:
+                make_reservation(guest_name, room_type, num_days, is_vip)
         elif choice == "2":
             display_room_availability()
         elif choice == "3":
