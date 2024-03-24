@@ -1,4 +1,5 @@
 # This is Ash.
+# A simple model for hotel reservations which is called "Ash Hotel".
 
 ascii_art = """
  █████╗ ███████╗██╗  ██╗    ██╗  ██╗ ██████╗ ████████╗███████╗██╗
@@ -107,4 +108,3 @@ print(ascii_art)
 print("\n💎 Welcome to Ash Hotel Reservation System")
 if __name__ == "__main__":
     main()
-
